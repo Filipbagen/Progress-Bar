@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Spartan', sans-serif;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.progress {
+  border-radius: 50pt;
+  border: 1pt solid black;
+  height: 10pt;
+  width: 60vw;
+}
+
+.progressBar {
+  height: 10pt;
+  border-radius: 50pt;
+  background-image: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+} 
