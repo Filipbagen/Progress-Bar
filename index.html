@@ -3,17 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <title>Progress bar</title>
 </head>
 <body onload="init()"">
-      <p class="text"></p>
-      <p class="text2"></p>
-  <div class="progress">
-    <div class="progressBar"></div>
+
+    <div class="header">
+      <p class="title">LiU Progress bar 🎓</p>
+      <p class="subtitle"></p>
+    </div>
+
+  <div class="progressObject">
+
+    <!-- Progressbar -->
+    <div class="progress">
+      <div class="progressBar"></div>
+    </div>
+
+
+    <div class="milestone" id="current"></div>
+    <div class="milestone" id="foundationYear"></div>
+    <div class="milestone" id="abroad"></div>
+
+
+
+
+      <h2 id="percent"></h2>
+      <h4 id="fyText">Tekniskt basår 🧒🏽</h4>
+      <h4 id="abroadText">Utlandsstudier 🇺🇸</h4>
   </div>
+
+
+
+
+
+
   <script src="progress.js"></script>
 </body>
 </html>

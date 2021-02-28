@@ -1,3 +1,8 @@
+@font-face {
+  font-family: festivoLetters;
+  src: url(assets/Ahmet\ Altun\ -\ FestivoLettersNo.1.otf);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,20 +12,149 @@ body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  font-family: 'Spartan', sans-serif;
+  font-family: 'festivoLetters', sans-serif;
   text-align: center;
   transition: 0.2s;
+  color: #333333;
+}
+
+.header {
+  position: absolute;
+  top: 48pt;
+}
+
+.title {
+  font-size: 44pt;
+}
+
+.subtitle {
+  position: relative;
+  bottom: 46pt;
+  font-size: 14pt;
+}
+
+.progressObject {
+  position: relative;
 }
 
 .progress {
   border-radius: 50pt;
-  border: 1pt solid black;
-  height: 10pt;
+  -webkit-box-shadow: 2px 2px 8px 5px rgba(0,0,0,0.08); 
+  box-shadow: 2px 2px 8px 5px rgba(0,0,0,0.08);
+  height: 16pt;
   width: 60vw;
+  max-width: 460pt;
+  overflow: hidden;
+  position: relative;
+  z-index:1 ; 
 }
 
 .progressBar {
-  height: 10pt;
-  border-radius: 50pt;
-  background-image: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+  height: 20pt;
+  max-width: 100%;
+  background-color: #333333;
+  -webkit-box-shadow: 0px 0px 4px 6px rgba(0,0,0,0.12); 
+  box-shadow: 0px 0px 4px 6px rgba(0,0,0,0.12);
+  transform-origin: 0% 100%;
+  animation: 1.2s load cubic-bezier(0.65, 0, 0.35, 1);
+  animation-fill-mode: forwards;
+  
 } 
+
+.milestone {
+  width: 2pt;
+  position: absolute;
+  background-color: #333333;
+  animation: 0.6s pop cubic-bezier(0.65, 0, 0.35, 1);
+  animation-fill-mode: forwards;
+  -webkit-box-shadow: 2px 2px 8px 5px rgba(0,0,0,0.08); 
+  box-shadow: 2px 2px 8px 5px rgba(0,0,0,0.08);
+}
+
+#current {
+  -webkit-border-radius: 50px 50px 0px 0px;
+  -moz-border-radius: 50px 50px 0px 0px;
+  border-radius: 50px 50px 0px 0px;
+  animation-delay: 0.95s;
+  transform-origin: 0% 100%;
+  position: absolute;
+  bottom: 16pt;
+}
+
+#foundationYear {
+  -webkit-border-radius: 0px 0px 50px 50px;
+  -moz-border-radius: 0px 0px 50px 50px;
+  border-radius: 0px 0px 50px 50px;
+  animation-delay: 0.6s;
+  transform-origin: 100% 0%;
+  position: absolute;
+  top: 16pt;
+}
+
+#abroad {
+  -webkit-border-radius: 0px 0px 50px 50px;
+  -moz-border-radius: 0px 0px 50px 50px;
+  border-radius: 0px 0px 50px 50px;
+  animation-delay: 1.6s;
+  transform-origin: 100% 0%;
+  position: absolute;
+  top: 16pt;
+}
+
+#percent, #fyText, #abroadText {
+  position: absolute;
+  visibility: hidden;
+  text-align: center;
+  animation: 0.2s reveal ease-out;
+  animation-fill-mode: forwards;
+}
+
+#percent {
+  bottom: 36pt;
+  animation-delay: 1.4s;
+}
+
+
+#fyText {
+  top: 36pt;
+  animation-delay: 1.2s;
+}
+
+#abroadText {
+  top: 36pt;
+  animation-delay: 2.2s;
+  left: 180pt;
+}
+
+
+
+@keyframes load {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes pop {
+	0% {
+		height: 0;
+	} 82% {
+		height: 36pt;
+	} 100% {
+		height: 30pt;
+	}
+}
+
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    visibility: initial;
+
+  } 100% {
+    opacity: 1;
+    visibility: initial;
+  }
+}
