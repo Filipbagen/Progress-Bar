@@ -3,7 +3,7 @@ const init = () => {
 }
 
 // How long you want the animation to take, in ms
-const animationDuration = 2000
+const animationDuration = 1200
 // Calculate how long each ‘frame’ should last if we want to update the animation 60 times per second
 const frameDuration = 1000 / 60
 // Use that to calculate how many frames we need to complete the animation
@@ -27,7 +27,7 @@ const animateCountUp = el => {
 
     // If the current count has changed, update the element
     if (parseInt(el.innerHTML, 10) !== currentCount) {
-      el.innerHTML = currentCount
+      el.innerHTML = currentCount + '%'
     }
 
     // If we’ve reached our last frame, stop the animation
@@ -63,17 +63,40 @@ const getProgress = () => {
   // Calculate percentage compleated
   const percentageDiff = ((compleated / totDays).toFixed(2)) * 100
 
-  document.querySelector('#current').style.left = 'calc(' + percentageDiff + '%' + ' - 2pt)'
-  document.querySelector('#foundationYear').style.left = '16.67%'
-  document.querySelector('#abroad').style.left = '66.67%'
+  // document.querySelector('#current').style.left = 'calc(' + percentageDiff + '%' + ' - 2pt)'
+  // document.querySelector('#foundationYear').style.left = '16.67%'
+  // document.querySelector('#abroad').style.left = '66.67%'
+
+  // Progress width set
+  document.querySelector('#progressBar').style.width = percentageDiff + '%'
+
+  document.querySelector('#current').animate([
+    // keyframes
+    { left: '0' },
+    { left: 'calc(' + percentageDiff + '%' + ' - 2pt)' }
+  ], {
+    // timing options
+    duration: 1200,
+    fill: 'forwards',
+    easing: 'cubic-bezier(0.65, 0, 0.35, 1)'
+  })
+
+  document.querySelector('#progressBar').animate([
+    // keyframes
+    { transform: 'scaleX(0)' },
+    { transform: 'scaleX(1)' }
+  ], {
+    // timing options
+    duration: 1200,
+    fill: 'forwards',
+    easing: 'cubic-bezier(0.65, 0, 0.35, 1)' // cubic-bezier(0.65, 0, 0.35, 1)
+  })
 
   document.querySelector('#percent').innerHTML = percentageDiff + '%'
 
   // Percentage position set
-  document.querySelector('#percent').style.left = 'calc(' + percentageDiff + '%' + ' - 11pt)'
+  document.querySelector('#percent').style.left = 'calc(' + percentageDiff + '%' + ' - 8pt)'
 
-  // Progress width set
-  document.querySelector('.progressBar').style.width = percentageDiff + '%'
   document.querySelector('.subtitle').innerHTML = 'Du har klarat ' + compleated + ' dagar och har ' + yearsLeft + ' år kvar!'
 
   runAnimations()
