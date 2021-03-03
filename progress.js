@@ -18,10 +18,12 @@ const animateCountUp = el => {
   // Start the animation running 60 times per second
   const counter = setInterval(() => {
     frame++
+
     // Calculate our progress as a value between 0 and 1
     // Pass that value to our easing function to get our
     // progress on a curve
     const progress = easeOutQuad(frame / totalFrames)
+
     // Use the progress value to calculate the current count
     const currentCount = Math.round(countTo * progress)
 
@@ -61,15 +63,27 @@ const getProgress = () => {
   const yearsLeft = (daysLeft / 365).toFixed(1)
 
   // Calculate percentage compleated
-  const percentageDiff = ((compleated / totDays).toFixed(2)) * 100
+  let percentageDiff = ((compleated / totDays).toFixed(2)) * 100
 
-  // document.querySelector('#current').style.left = 'calc(' + percentageDiff + '%' + ' - 2pt)'
-  // document.querySelector('#foundationYear').style.left = '16.67%'
-  // document.querySelector('#abroad').style.left = '66.67%'
+  const subtitle = document.querySelector('.subtitle')
+  const percent = document.querySelector('#percent')
+
+  if (percentageDiff >= 100) {
+    percentageDiff = 100
+    subtitle.innerHTML = 'Grattis, du är klar! ❤️'
+    // Percentage position set
+    percent.style.left = 'calc(' + -percentageDiff + '%' + ' - 12pt)'
+    document.querySelector('#progressBar').style.backgroundImage = 'linear-gradient(to right, #09b92a, #79d676)'
+  } else {
+    // Percentage position set
+    percent.style.left = 'calc(' + percentageDiff + '%' + ' - 8pt)'
+    subtitle.innerHTML = 'Du har klarat ' + compleated + ' dagar och har ' + yearsLeft + ' år kvar!'
+  }
 
   // Progress width set
   document.querySelector('#progressBar').style.width = percentageDiff + '%'
 
+  // Animations
   document.querySelector('#current').animate([
     // keyframes
     { left: '0' },
@@ -83,21 +97,20 @@ const getProgress = () => {
 
   document.querySelector('#progressBar').animate([
     // keyframes
-    { transform: 'scaleX(0)' },
-    { transform: 'scaleX(1)' }
+    { width: '0' },
+    { width: percentageDiff + '%' }
   ], {
     // timing options
     duration: 1200,
     fill: 'forwards',
-    easing: 'cubic-bezier(0.65, 0, 0.35, 1)' // cubic-bezier(0.65, 0, 0.35, 1)
+    easing: 'cubic-bezier(0.65, 0, 0.35, 1)'
   })
 
-  document.querySelector('#percent').innerHTML = percentageDiff + '%'
+  percent.innerHTML = percentageDiff + '%'
 
-  // Percentage position set
-  document.querySelector('#percent').style.left = 'calc(' + percentageDiff + '%' + ' - 8pt)'
-
-  document.querySelector('.subtitle').innerHTML = 'Du har klarat ' + compleated + ' dagar och har ' + yearsLeft + ' år kvar!'
+  // Milestone locations set
+  document.querySelector('#foundationYear').style.left = 'calc(' + 100 / 6 + '%' + ' - 2pt)'
+  document.querySelector('#abroad').style.left = 'calc(' + 100 / 6 * 4 + '%' + ' - 2pt)'
 
   runAnimations()
 }

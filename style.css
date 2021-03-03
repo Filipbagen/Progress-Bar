@@ -19,8 +19,8 @@ body {
 }
 
 .header {
-  position: absolute;
-  top: 48pt;
+  position: relative;
+  bottom: 64pt;
 }
 
 .title {
@@ -35,6 +35,7 @@ body {
 
 .progressObject {
   position: relative;
+  bottom: 32pt;
 }
 
 .progress {
@@ -57,12 +58,10 @@ body {
   -webkit-box-shadow: 0px 0px 4px 6px rgba(0,0,0,0.12); 
   box-shadow: 0px 0px 4px 6px rgba(0,0,0,0.12);
   transform-origin: 0% 100%;
-  /* animation: 1.2s load cubic-bezier(0.65, 0, 0.35, 1);
-  animation-fill-mode: forwards; */
-  
 } 
 
 .milestone, #current {
+  position: absolute;
   width: 2pt;
   background-color: #333333;
   -webkit-box-shadow: 2px 2px 8px 5px rgba(0,0,0,0.08); 
@@ -70,22 +69,19 @@ body {
 }
 
 .milestone {
-  position: absolute;
-  animation: 0.6s pop cubic-bezier(0.65, 0, 0.35, 1);
-  animation-fill-mode: forwards;
+  -webkit-border-radius: 0px 0px 50px 50px;
+  -moz-border-radius: 0px 0px 50px 50px;
+  border-radius: 0px 0px 50px 50px;
+  display: flex;
+  justify-content: center;
+  height: 0;
 }
 
 #current {
-  position: absolute;
   bottom: 8pt;
   -webkit-border-radius: 50px 50px 0px 0px;
   -moz-border-radius: 50px 50px 0px 0px;
   border-radius: 50px 50px 0px 0px;
-  height: 44pt;
-  /* animation: 1.2s slide cubic-bezier(0.65, 0, 0.35, 1);
-  animation-fill-mode: forwards;
-  animation-delay: 0.95s;
-  transform-origin: 0% 100%; */
 }
 
 #percent {
@@ -93,53 +89,34 @@ body {
   bottom: 34pt;
 }
 
+.milestoneText {
+  position: relative;
+  top: 24pt;
+  visibility: hidden;
+}
+
 #foundationYear {
-  -webkit-border-radius: 0px 0px 50px 50px;
-  -moz-border-radius: 0px 0px 50px 50px;
-  border-radius: 0px 0px 50px 50px;
+  animation: 0.6s pop cubic-bezier(0.65, 0, 0.35, 1);
+  animation-fill-mode: forwards;
   animation-delay: 0.6s;
-  transform-origin: 100% 0%;
-  position: absolute;
-  top: 16pt;
+}
+
+#foundationYear .milestoneText {
+  animation: 0.2s reveal ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0.8s;
 }
 
 #abroad {
-  -webkit-border-radius: 0px 0px 50px 50px;
-  -moz-border-radius: 0px 0px 50px 50px;
-  border-radius: 0px 0px 50px 50px;
-  animation-delay: 1.6s;
-  transform-origin: 100% 0%;
-  position: absolute;
-  top: 16pt;
-}
-
-#fyText, #abroadText {
-  position: absolute;
-  /* visibility: hidden; */
-  text-align: center;
-  /* animation: 0.2s reveal ease-out; */
+  animation: 0.6s pop cubic-bezier(0.65, 0, 0.35, 1);
   animation-fill-mode: forwards;
+  animation-delay: 0.8s;
 }
 
-
-#fyText {
-  top: 36pt;
+#abroad .milestoneText {
+  animation: 0.2s reveal ease-out;
+  animation-fill-mode: forwards;
   animation-delay: 1.2s;
-}
-
-#abroadText {
-  top: 36pt;
-  animation-delay: 2.2s;
-  left: 180pt;
-}
-
-@keyframes load {
-    0% {
-        transform: scaleX(0);
-
-    } 100% {
-        transform: scaleX(1);
-    }
 }
 
 @keyframes pop {
@@ -157,9 +134,11 @@ body {
   0% {
     opacity: 0;
     visibility: initial;
+    transform: scale(0.5);
 
   } 100% {
     opacity: 1;
     visibility: initial;
+    transform: scale(1);
   }
 }
